@@ -1,0 +1,45 @@
+﻿@model ModuleManager.SqlServer.Models.User
+
+@{
+	ViewData["Title"] = "Chi tiết người dùng";
+}
+
+<h2 class="mb-4 text-center">
+	CHI TIẾT CỦA NGƯỜI DÙNG: @Html.DisplayFor(model => model.UserName)
+</h2>
+
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<div class="row align-items-center">
+						<div class="col-md-4 text-center mb-3 mb-md-0">
+							<img src="@Model.ImageUrl" alt="Avatar" class="img-thumbnail" style="width: 250px; height: 250px; object-fit: contain;">
+						</div>
+
+						<div class="col-md-8">
+							<div class="form-group mb-3">
+								<label class="fw-bold">Tên người dùng:</label>
+								<p class="form-control-plaintext border rounded p-2">@Html.DisplayFor(model => model.UserName)</p>
+							</div>
+
+							<div class="form-group mb-3">
+								<label class="fw-bold">Email:</label>
+								<p class="form-control-plaintext border rounded p-2">@Html.DisplayFor(model => model.Email)</p>
+							</div>
+
+							<div class="form-group mb-3">
+								<label class="fw-bold">Ngày tạo:</label>
+								<p class="form-control-plaintext border rounded p-2">@Html.DisplayFor(model => model.CreatedAt)</p>
+							</div>
+						</div>
+					</div>
+					<div class="text-end mt-4">
+						<a asp-action="Index" class="btn btn-secondary">Trở lại</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

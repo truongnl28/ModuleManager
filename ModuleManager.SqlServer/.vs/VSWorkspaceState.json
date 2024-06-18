@@ -1,0 +1,10 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\ModuleManager.SqlServer",
+    "\\ModuleManager.SqlServer\\Services",
+    "\\ModuleManager.SqlServer\\Views",
+    "\\ModuleManager.SqlServer\\Views\\User"
+  ],
+  "PreviewInSolutionExplorer": false
+}

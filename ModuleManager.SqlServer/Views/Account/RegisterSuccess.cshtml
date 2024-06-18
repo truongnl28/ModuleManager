@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Đăng ký thành công";
+}
+
+<div>
+    <p>@TempData["SuccessMessage"]</p>
+    <p>@TempData["EmailMessage"]</p>
+</div>
+
+<a asp-controller="Account" asp-action="Login">Chuyển tới trang đăng nhập</a>

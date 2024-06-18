@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ModuleManager.SqlServer.Models.User>
+
+@{
+	ViewData["Title"] = "Quản lý người dùng";
+}
+
+<h2 class="text-center mb-4">QUẢN LÝ NGƯỜI DÙNG</h2>
+
+@if (TempData["SuccessMessage"] != null)
+{
+	<div class="alert alert-success">
+		@TempData["SuccessMessage"]
+	</div>
+}
+
+<div class="text-end mt-4">
+	<button type="button" class="btn btn-danger" id="delete-selected">Xóa người dùng đã chọn</button>
+</div>
+
+<form id="delete-form" asp-action="DeleteMultiple" method="post">
+	<table class="table table-hover">
+		<thead class="thead-light">
+			<tr>
+				<th>
+					<input type="checkbox" id="select-all" />
+					<label for="select-all">Select All</label>
+				</th>
+				<th>
+					Tên người dùng
+				</th>
+				<th>
+					Email
+				</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr class="align-middle">
+					<td class="align-middle">
+						<input type="checkbox" name="userIds" value="@item.UserId" />
+					</td>
+					<td class="align-middle">
+						@Html.DisplayFor(modelItem => item.UserName)
+					</td>
+					<td class="align-middle">
+						@Html.DisplayFor(modelItem => item.Email)
+					</td>
+					<td class="align-middle">
+						<a asp-action="Details" asp-route-id="@item.UserId" class="btn btn-primary btn-sm">Chi tiết</a>
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+</form>
+
+<script>
+	document.getElementById('select-all').addEventListener('click', function () {
+		var checkboxes = document.querySelectorAll('input[type="checkbox"][name="userIds"]');
+		var allChecked = this.checked;
+		checkboxes.forEach(function (checkbox) {
+			checkbox.checked = allChecked;
+		});
+	});
+
+	document.getElementById('delete-selected').addEventListener('click', function () {
+		var selected = document.querySelectorAll('input[type="checkbox"][name="userIds"]:checked');
+		if (selected.length === 0) {
+			alert('Vui lòng chọn ít nhất một người dùng để xóa.');
+			return;
+		}
+
+		if (confirm('Bạn có chắc chắn muốn xóa người dùng đã chọn không?')) {
+			document.getElementById('delete-form').submit();
+		}
+	});
+</script>
